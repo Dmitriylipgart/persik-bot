@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  bot:
+    image: nest/pet-bot
+    container_name: pet-bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+
