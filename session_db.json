@@ -1,0 +1,22 @@
+{
+  "sessions": [
+    {
+      "id": "673206464:673206464",
+      "data": {
+        "__scenes": {
+          "current": "start",
+          "state": {}
+        }
+      }
+    },
+    {
+      "id": "5504034767:5504034767",
+      "data": {
+        "__scenes": {
+          "current": "start",
+          "state": {}
+        }
+      }
+    }
+  ]
+}
