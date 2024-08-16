@@ -1,4 +1,5 @@
 import { COMMANDS } from '../bot.buttons';
+import { BotCommand } from './types';
 
 export const BOT_NAME = 'persik-bot';
 
