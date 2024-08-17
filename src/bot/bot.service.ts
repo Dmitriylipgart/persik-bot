@@ -80,6 +80,13 @@ export class BotService {
 
   async getAnonStatus(): Promise<[boolean, boolean]> {
     const status = await this.statusRepository.find();
+    if (status.length === 0) {
+      const newStatus = new StatusEntity();
+      newStatus.anonStarted = false;
+      newStatus.deAnonStarted = false;
+      await this.statusRepository.save(newStatus);
+      return [false, false];
+    }
     return [status[0].anonStarted, status[0].deAnonStarted];
   }
 

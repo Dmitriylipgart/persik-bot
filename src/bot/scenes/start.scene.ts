@@ -26,7 +26,7 @@ export class StartScene {
     const user = await this.botService.getUserAndSaveIfNotExist(ctx.from);
     const isOwner = user.role === UserRole.Owner;
     const isAdmin = user.role === UserRole.Admin;
-    const [anonStarted] = await this.botService.getAnonStatus();
+    const [anonStarted, deAnonStarted] = await this.botService.getAnonStatus();
     const commands = getCommands(anonStarted, isOwner);
     console.log('users: ' + user);
 
@@ -35,11 +35,19 @@ export class StartScene {
       return;
     }
 
-    await ctx.replyWithHTML(
-      [`👋 Привет ${ctx.from.first_name}!`, '', `Напиши мне сообщение`].join(
-        '\n',
-      ),
-    );
+    if (anonStarted || deAnonStarted) {
+      await ctx.replyWithHTML(
+        [`👋 Привет ${ctx.from.first_name}!`, '', `Напиши мне сообщение`].join(
+          '\n',
+        ),
+      );
+    } else {
+      await ctx.replyWithHTML(
+        [`👋 Привет ${ctx.from.first_name}!`, ` 😔 Пока нет активностей`].join(
+          '\n',
+        ),
+      );
+    }
   }
 
   @On('text')

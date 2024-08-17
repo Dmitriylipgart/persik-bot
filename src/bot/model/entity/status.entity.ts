@@ -1,20 +1,25 @@
-import {Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn} from 'typeorm';
-
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class StatusEntity {
-    @PrimaryColumn({ type: 'bigint' })
-    id: number;
+  @PrimaryGeneratedColumn({ type: 'bigint' })
+  id: number;
 
-    @Column({default: false})
-    anonStarted: boolean;
+  @Column({ default: false })
+  anonStarted: boolean;
 
-    @Column({default: false})
-    public deAnonStarted: boolean;
+  @Column({ default: false })
+  public deAnonStarted: boolean;
 
-    @CreateDateColumn()
-    public readonly createdAt: Date;
+  @CreateDateColumn()
+  public readonly createdAt: Date;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
