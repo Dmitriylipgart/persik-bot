@@ -46,6 +46,18 @@ export class BotService {
     });
   }
 
+  async isOwner(tgUser: TelegramUser): Promise<boolean> {
+    const user = await this.getUser(tgUser.id);
+    return user.role === UserRole.Owner;
+  }
+
+  async isOwnerOrAdmin(tgUser: TelegramUser) {
+    const user = await this.getUser(tgUser.id);
+    const isAdmin = user.role === UserRole.Admin;
+    const isOwner = user.role === UserRole.Owner;
+    return [isOwner, isAdmin];
+  }
+
   async getUserAndSaveIfNotExist(tgUser: TelegramUser): Promise<UserEntity> {
     const user = await this.getUser(tgUser.id);
     if (!user) {
